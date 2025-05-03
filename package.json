@@ -1,0 +1,6 @@
+{
+  "name": "zoltra-toolkit",
+  "workspaces": [
+    "packages/*"
+  ]
+}

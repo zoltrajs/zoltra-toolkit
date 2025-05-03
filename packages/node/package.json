@@ -1,0 +1,55 @@
+{
+  "name": "@zoltra-toolkit/node",
+  "version": "0.1.0",
+  "description": "A suite of Node.js helpers, shared libraries, and configuration presets maintained by Zoltra Toolkit for backend and tooling workflows.",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./plimit": "./dist/utils/node-utils/plimit.d.ts",
+    "./node-utils": "./dist/utils/node-utils"
+  },
+  "scripts": {
+    "build": "rm -rf .rollup.cache && rm -rf tsconfig.tsbuildinfo && rollup -c"
+  },
+  "keywords": [
+    "nodejs",
+    "backend",
+    "utilities",
+    "configuration",
+    "zoltra-toolkit",
+    "db-config"
+  ],
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoltrajs/zoltra-toolkit.git"
+  },
+  "homepage": "https://github.com/zoltrajs/zoltra-toolkit#readme",
+  "bugs": {
+    "url": "https://github.com/zoltrajs/zoltra-toolkit/issues"
+  },
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.15.3",
+    "rollup": "^4.36.0",
+    "rollup-plugin-delete": "^3.0.1",
+    "rollup-plugin-esbuild": "^6.2.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-visualizer": "^5.14.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.2"
+  }
+}
