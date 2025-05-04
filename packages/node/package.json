@@ -1,11 +1,14 @@
 {
   "name": "@zoltra-toolkit/node",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha.1",
   "description": "A suite of Node.js helpers, shared libraries, and configuration presets maintained by Zoltra Toolkit for backend and tooling workflows.",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
+  "publishConfig": {
+    "tag": "alpha"
+  },
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -16,7 +19,10 @@
     "./node-utils": "./dist/utils/node-utils"
   },
   "scripts": {
-    "build": "rm -rf .rollup.cache && rm -rf tsconfig.tsbuildinfo && rollup -c"
+    "build": "rm -rf .rollup.cache && rm -rf tsconfig.tsbuildinfo && rollup -c",
+    "publish-alpha": "npm publish --tag alpha --access public --provenance=false",
+    "publish-beta": "npm publish --tag beta --access public --provenance=false",
+    "publish-rc": "npm publish --tag rc --access public --provenance=false"
   },
   "keywords": [
     "nodejs",

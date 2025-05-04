@@ -1,13 +1,13 @@
 {
   "name": "@zoltra-toolkit/react",
-  "version": "0.1.0-rc.1",
+  "version": "0.1.0-alpha.1",
   "description": "A collection of React utilities, custom hooks, and UI components maintained by Zoltra Toolkit to accelerate frontend development.",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "publishConfig": {
-    "tag": "rc"
+    "tag": "alpha"
   },
   "exports": {
     ".": {
