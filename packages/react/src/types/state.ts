@@ -1,9 +1,9 @@
 export type Listener<T> = (state: T) => void;
 export type Unsubscribe = () => void;
 export type Middleware<T> = (state: T, action: any) => T;
-export type ActionCreator<P = void, R = void> = (
+export type ActionCreator<P = void, R = void, S = any> = (
   payload: P
-) => (store: StoreApi<any>) => R;
+) => (store: StoreApi<S>) => R;
 export type AsyncActionCreator<P, R> = (
   payload: P,
   context: StoreApi<any>
@@ -12,7 +12,10 @@ export type AsyncActionCreator<P, R> = (
 export interface StoreApi<T> {
   getState: () => T;
   setState: (action: Partial<T> | ((prev: T) => Partial<T>)) => T;
-  dispatch: <R>(asyncAction: (api: StoreApi<T>) => Promise<R>) => Promise<R>;
+  dispatch: (action: (api: StoreApi<T>) => void) => void;
+  dispatchAsync: <R>(
+    asyncAction: (api: StoreApi<T>) => Promise<R>
+  ) => Promise<R>;
   subscribe: (listener: Listener<T>) => Unsubscribe;
 }
 

@@ -83,7 +83,10 @@ export function createStore<T extends object>(
       listeners.add(listener);
       return () => listeners.delete(listener);
     },
-    dispatch: async (asyncAction) => {
+    dispatch: (action) => {
+      return action(api);
+    },
+    dispatchAsync: async (asyncAction) => {
       try {
         return await asyncAction(api);
       } catch (error) {

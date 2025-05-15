@@ -4,7 +4,12 @@ import { getStore } from "./core";
 
 export function useStore<T>(
   store: StoreApi<T>
-): [T, StoreApi<T>["setState"], StoreApi<T>["dispatch"]] {
+): [
+  T,
+  StoreApi<T>["setState"],
+  StoreApi<T>["dispatch"],
+  StoreApi<T>["dispatchAsync"]
+] {
   const [state, setState] = useState(store.getState());
 
   useEffect(() => {
@@ -13,18 +18,30 @@ export function useStore<T>(
   }, [store]);
 
   const dispatch = useCallback(
-    async <R>(action: (api: StoreApi<T>) => Promise<R>) => {
-      return await store.dispatch(action);
+    (action: (api: StoreApi<T>) => void) => {
+      return store.dispatch(action);
     },
     [store]
   );
 
-  return [state, store.setState, dispatch];
+  const dispatchAsync = useCallback(
+    async <R>(action: (api: StoreApi<T>) => Promise<R>) => {
+      return await store.dispatchAsync(action);
+    },
+    [store]
+  );
+
+  return [state, store.setState, dispatch, dispatchAsync];
 }
 
 export function useNamedStore<T>(
   name: string
-): [T, StoreApi<T>["setState"], StoreApi<T>["dispatch"]] {
+): [
+  T,
+  StoreApi<T>["setState"],
+  StoreApi<T>["dispatch"],
+  StoreApi<T>["dispatchAsync"]
+] {
   const store = getStore<T>(name);
   if (!store) {
     throw new Error(`Store ${name} not found`);
